@@ -18,8 +18,8 @@ def fetch_spacex_launch(args):
 
 def main():
     os.makedirs("images", exist_ok=True)
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-l", "--launch_id")
+    parser = argparse.ArgumentParser(description="Get photos from SpaceX launch.")
+    parser.add_argument("-l", "--launch_id", help="Get photos from the specified launch.")
     args = parser.parse_args()
     fetch_spacex_launch(args)
 
