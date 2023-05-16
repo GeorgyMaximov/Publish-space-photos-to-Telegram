@@ -14,9 +14,10 @@ def get_file_extension(url):
 
 def get_apod_images(nasa_api_token):
     url = "https://api.nasa.gov/planetary/apod"
+    photo_count = 30
     payload = {
         "api_key": nasa_api_token,
-        "count": 30
+        "count": photo_count
     }
     response = requests.get(url, params=payload)
     for image_number, image in enumerate(response.json(), start=1):
