@@ -6,14 +6,14 @@ from dotenv import load_dotenv
 import argparse
 
 
-def publish_to_telegram(tg_bot_token, tg_chat_id, args):
+def publish_to_telegram(tg_bot_token, tg_chat_id, delay_time):
     bot = telegram.Bot(token=tg_bot_token)
     for root, dirs, files in os.walk("images"):
         while True:
             for file in files:
                 bot.send_photo(chat_id=tg_chat_id, photo=open(f"images/{file}" , "rb"))
-                if args.delay_time:
-                    time.sleep(args.delay_time)
+                if delay_time:
+                    time.sleep(delay_time)
                 else:
                     time.sleep(1440)
             random.shuffle(files)
@@ -26,7 +26,7 @@ def main():
     parser = argparse.ArgumentParser(description="Publish photos to Telegram.")
     parser.add_argument("-d", "--delay_time", type=int, help="Time between sending photos.")
     args = parser.parse_args()
-    publish_to_telegram(tg_bot_token, tg_chat_id, args)
+    publish_to_telegram(tg_bot_token, tg_chat_id, args.delay_time)
 
 
 if __name__ == "__main__":
