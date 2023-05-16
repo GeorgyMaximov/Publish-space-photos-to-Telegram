@@ -12,10 +12,10 @@ def get_file_extension(url):
     return file_extension
 
 
-def get_apod_images(nasa_api):
+def get_apod_images(nasa_api_token):
     url = "https://api.nasa.gov/planetary/apod"
     payload = {
-        "api_key": nasa_api,
+        "api_key": nasa_api_token,
         "count": 30
     }
     response = requests.get(url, params=payload)
@@ -31,8 +31,8 @@ def get_apod_images(nasa_api):
 def main():
     os.makedirs("images", exist_ok=True)
     load_dotenv()
-    nasa_api = os.getenv("NASA_API")
-    get_apod_images(nasa_api)
+    nasa_api_token = os.getenv("NASA_API_TOKEN")
+    get_apod_images(nasa_api_token)
 
 
 if __name__ == "__main__":
