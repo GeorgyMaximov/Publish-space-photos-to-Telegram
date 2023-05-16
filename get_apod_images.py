@@ -1,4 +1,3 @@
-from unittest import skip
 from dotenv import load_dotenv
 import requests
 import urllib.parse
