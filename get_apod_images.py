@@ -23,7 +23,7 @@ def get_apod_images(nasa_api_token):
     for image_number, image in enumerate(response.json(), start=1):
         link = image["url"]
         file_extension = get_file_extension(link)
-        if file_extension == "":
+        if not file_extension:
             continue
         filename = f"images/apod_{image_number}{file_extension}"
         download_image(link, filename)
