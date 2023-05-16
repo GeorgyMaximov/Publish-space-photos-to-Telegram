@@ -5,10 +5,10 @@ from dotenv import load_dotenv
 from download_image import download_image
 
 
-def get_epic_images(nasa_api):
+def get_epic_images(nasa_api_token):
     url = "https://api.nasa.gov/EPIC/api/natural/images"
     payload = {
-        "api_key": nasa_api
+        "api_key": nasa_api_token
     }
     response = requests.get(url, params=payload)
     for number_image, features_image in enumerate(response.json()):
@@ -23,8 +23,8 @@ def get_epic_images(nasa_api):
 def main():
     os.makedirs("images", exist_ok=True)
     load_dotenv()
-    nasa_api = os.getenv("NASA_API")
-    get_epic_images(nasa_api)
+    nasa_api_token = os.getenv("NASA_API_TOKEN")
+    get_epic_images(nasa_api_token)
 
 
 if __name__ == "__main__":
