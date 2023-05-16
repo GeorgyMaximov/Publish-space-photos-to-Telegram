@@ -20,6 +20,7 @@ def get_apod_images(nasa_api_token):
         "count": photo_count
     }
     response = requests.get(url, params=payload)
+    response.raise_for_status()
     for image_number, image in enumerate(response.json(), start=1):
         link = image["url"]
         file_extension = get_file_extension(link)
