@@ -12,10 +12,7 @@ def publish_to_telegram(tg_bot_token, tg_chat_id, delay_time):
         while True:
             for file in files:
                 bot.send_photo(chat_id=tg_chat_id, photo=open(f"images/{file}" , "rb"))
-                if delay_time:
-                    time.sleep(delay_time)
-                else:
-                    time.sleep(1440)
+                time.sleep(delay_time)
             random.shuffle(files)
 
 
@@ -24,7 +21,7 @@ def main():
     tg_chat_id = os.getenv("TG_CHAT_ID")
     tg_bot_token = os.getenv("TG_BOT_TOKEN")
     parser = argparse.ArgumentParser(description="Publish photos to Telegram.")
-    parser.add_argument("-d", "--delay_time", type=int, help="Time between sending photos.")
+    parser.add_argument("-d", "--delay_time", default=1440, type=int, help="Time between sending photos.")
     args = parser.parse_args()
     publish_to_telegram(tg_bot_token, tg_chat_id, args.delay_time)
 
