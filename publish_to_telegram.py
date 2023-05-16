@@ -11,7 +11,8 @@ def publish_to_telegram(tg_bot_token, tg_chat_id, delay_time):
     for root, dirs, files in os.walk("images"):
         while True:
             for file in files:
-                bot.send_photo(chat_id=tg_chat_id, photo=open(f"images/{file}" , "rb"))
+                with open(f"images/{file}" , "rb") as photo:
+                    bot.send_photo(chat_id=tg_chat_id, photo=photo)
                 time.sleep(delay_time)
             random.shuffle(files)
 
