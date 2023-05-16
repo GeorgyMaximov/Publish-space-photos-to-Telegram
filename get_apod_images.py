@@ -1,3 +1,4 @@
+from unittest import skip
 from dotenv import load_dotenv
 import requests
 import urllib.parse
@@ -30,7 +31,7 @@ def get_apod_images(nasa_api):
 def main():
     os.makedirs("images", exist_ok=True)
     load_dotenv()
-    nasa_api_token = os.getenv("NASA_API_TOKEN")
+    nasa_api = os.getenv("NASA_API")
     get_apod_images(nasa_api)
 
 
