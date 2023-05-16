@@ -23,7 +23,7 @@ def get_epic_images(nasa_api):
 def main():
     os.makedirs("images", exist_ok=True)
     load_dotenv()
-    nasa_api = os.getenv("NASA_API")
+    nasa_api_token = os.getenv("NASA_API_TOKEN")
     get_epic_images(nasa_api)
 
 
