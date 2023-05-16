@@ -5,10 +5,7 @@ import os
 
 
 def fetch_spacex_launch(launch_id):
-    if launch_id:
-        url = f"https://api.spacexdata.com/v5/launches/{launch_id}"
-    else:
-        url = "https://api.spacexdata.com/v5/launches/latest"
+    url = f"https://api.spacexdata.com/v5/launches/{launch_id}"
     response = requests.get(url)
     links = response.json()["links"]["flickr"]["original"]
     for link_number, link in enumerate(links):
@@ -19,7 +16,7 @@ def fetch_spacex_launch(launch_id):
 def main():
     os.makedirs("images", exist_ok=True)
     parser = argparse.ArgumentParser(description="Get photos from SpaceX launch.")
-    parser.add_argument("-l", "--launch_id", help="Get photos from the specified launch.")
+    parser.add_argument("-l", "--launch_id", default="latest", help="Get photos from the specified launch.")
     args = parser.parse_args()
     fetch_spacex_launch(args.launch_id)
 
